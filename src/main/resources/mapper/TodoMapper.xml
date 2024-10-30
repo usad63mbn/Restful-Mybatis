@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper file: 실행시킬 query를 가지고 있는 파일 -->
+
+<mapper namespace="com.todo.mapper.TodoMapper">
+
+	<select id="allList" resultType="Todo">
+		select * from todo
+	</select>
+
+	<select id="allListById" parameterType="string"
+		resultType="Todo">
+		select * from todo where userid = #{userid}
+	</select>
+
+	<select id="find" parameterType="string" resultType="Todo">
+		select *
+		from todo where num = #{num};
+	</select>
+
+
+	<insert id="add" parameterType="Todo">
+		insert into todo(content, userid, sdate, edate,done)
+		values( #{content}, #{userid}, #{sdate}, #{edate}, 'N');
+	</insert>
+
+	<update id="modify" parameterType="Todo">
+		update todo set content=#{content}, sdate=#{sdate}, edate=#{edate}
+		where num = #{num}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		delete from todo where num = #{num}
+	</delete>
+
+	<!-- complete 만들 어주기(임시) -->
+	<update id="complete" parameterType="Todo">
+		update todo set done = case 
+			when done ='N' then 'Y'
+			when done = 'Y' then 'N'
+		end
+		where num = #{num}
+	</update>
+
+	<delete id="deleteAll">
+		delete from todo
+	</delete>
+</mapper>
+
+
+
+
