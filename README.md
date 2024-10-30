@@ -1,6 +1,7 @@
 SpringBoot
 -------------------
 ### Restful
+CrossOrigin(CORS), @RequestBody와 Map<K,T>(TodoController2) / ResponseEntity<T>
 
 ### MyBatis
 application.properties [dataSource + mybatis관련 설정(XXXmapper.xml 위치 포함)] -> SpringBoot가 XXXmapper.xml을 통해 빈 생성 <br>
